@@ -10,18 +10,15 @@ jobs:
     steps:
       - name: check out
         uses: actions/checkout@v3
-
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '3.1.x'
-          
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
         
-      - name: install and run cyclonedx
-        run: |
-          dotnet tool install -g cyclonedx
-          dotnet CycloneDX ./WebGoat.NET.sln --out ./ -gt ${{ secrets.CYCLONE_GITHUB_TOKEN }} -gu sfr@acies.dk
+      - name: Setup MSBuild Path
+        uses: warrenbuckley/Setup-MSBuild@v1
+          
+      - name: Restore NuGet Packages
+        run: nuget restore WebGoat.NET.sln
+ 
+      - name: Build and Publish Web App
+        run: msbuild WebGoat.NET.sln /p:Configuration=Release
 
       - name: run semgrep
         run: |
