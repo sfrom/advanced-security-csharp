@@ -11,8 +11,12 @@ jobs:
       - name: check out
         uses: actions/checkout@v3
 
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '3.5.x'
+          
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
         
       - name: install and run cyclonedx
         run: |
