@@ -6,19 +6,19 @@ on:
 jobs:
   analyze:
     name: analyze code
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: check out
         uses: actions/checkout@v3
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
+      # - name: Add msbuild to PATH
+      #   uses: microsoft/setup-msbuild@v1.1
 
-      - name: Restore NuGet Packages
-        run: nuget restore WebGoat.NET.sln
+      # - name: Restore NuGet Packages
+      #   run: nuget restore WebGoat.NET.sln
 
-      - name: Build and Publish Web App
-        run: msbuild WebGoat.NET.sln /p:Configuration=Release
+      # - name: Build and Publish Web App
+      #   run: msbuild WebGoat.NET.sln /p:Configuration=Release
 
       - name: run semgrep
         run: |
