@@ -23,7 +23,7 @@ jobs:
       - name: run semgrep
         run: |
           python3 -m pip install semgrep
-          semgrep scan --config=auto --json -o semgrep.json
+          semgrep scan --config="p/csharp" --json -o semgrep.json
 
       - name: build artifacts
         run: |
