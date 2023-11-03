@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check out
-        uses: actions/checkout@v
+        uses: actions/checkout@v3
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
