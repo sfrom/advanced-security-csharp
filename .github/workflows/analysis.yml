@@ -10,13 +10,13 @@ jobs:
     steps:
       - name: check out
         uses: actions/checkout@v3
-        
+
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
-          
+
       - name: Restore NuGet Packages
         run: nuget restore WebGoat.NET.sln
- 
+
       - name: Build and Publish Web App
         run: msbuild WebGoat.NET.sln /p:Configuration=Release
 
@@ -28,8 +28,6 @@ jobs:
       - name: build artifacts
         run: |
           mkdir output
-          sed -i '1s/^\xEF\xBB\xBF//' bom.xml
-          cp bom.xml output/bom.xml
           cp semgrep.json output/semgrep.json
 
       - name: upload artifacts
