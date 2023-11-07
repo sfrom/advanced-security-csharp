@@ -23,7 +23,7 @@ jobs:
       - name: run semgrep
         run: |
           python3 -m pip install semgrep
-          semgrep scan --config="p/default" --json -o semgrep.json
+          semgrep --config "p/owasp-top-ten" --json -o semgrep.json
 
       - name: build artifacts
         run: |
